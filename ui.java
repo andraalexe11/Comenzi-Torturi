@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class ui {
     private servicecomanda servicecomanda = new servicecomanda();
     private servicetort servicetort = new servicetort();
+
+    Scanner choise = new Scanner(System.in);
     DateTimeFormatter form = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     ui() {
     }
@@ -16,8 +18,7 @@ public class ui {
         this.servicecomanda = servicecomanda;
     }
 
-    void addtort() {
-        Scanner choise = new Scanner(System.in);
+    void addtort() throws RepositoryException {
         System.out.print("Enter cake id: ");
         String token = choise.next();
         int id = Integer.parseInt(token);
@@ -26,48 +27,30 @@ public class ui {
         servicetort.add(id, tip);
     }
 
-    void deletetort() {
-        Scanner choise = new Scanner(System.in);
-
+    void deletetort() throws RepositoryException {
         System.out.print("Enter cake id: ");
         String token = choise.next();
         int id = Integer.parseInt(token);
-        System.out.print("Enter cake type: ");
-        String tip = choise.next();
-        if (servicetort.delete(id, tip)) {
-            System.out.print("Element succesfully deleted");
-        } else {
-            System.out.print("Element does not exist");
-        }
+        servicetort.delete(id);
     }
 
-    void updatetort() {
-        Scanner choise = new Scanner(System.in);
-
-        System.out.print("Enter old cake id: ");
+    void updatetort() throws RepositoryException {
+        System.out.print("Enter cake's id: ");
         String token = choise.next();
         int idvechi = Integer.parseInt(token);
-        System.out.print("Enter old cake type: ");
-        String tipvechi = choise.next();
         System.out.print("Enter new cake type: ");
         String tipnou = choise.next();
-        if (servicetort.update(idvechi, idvechi, tipvechi, tipnou)) {
-            System.out.print("Element succesfully updated");
-        } else {
-            System.out.print("Element does not exist");
-        }
+        servicetort.update(idvechi, tipnou);
 
     }
 
-    void getAlltorturi(){
-        System.out.print("These are the added cakes: ");
+    void getAlltorturi() throws RepositoryException {
         for(int i = 0; i<servicetort.getAll().size(); i++){
             System.out.print("Cake:  " + servicetort.getAll().get(i));
         }
     }
-    void addcomanda(){
+    void addcomanda() throws RepositoryException {
         System.out.println("Enter id: ");
-        Scanner choise = new Scanner(System.in);
         String token = choise.next();
         int id = Integer.parseInt(token);
         System.out.println("Enter date (dd/mm/yyyy): ");
@@ -82,16 +65,12 @@ public class ui {
         }
         servicecomanda.add(id, date, torturi);
     }
-    void updatecomanda(){
-        System.out.println("Enter id: ");
-        Scanner choise = new Scanner(System.in);
+    void updatecomanda() throws RepositoryException {
+        System.out.println("Enter cake's id: ");
         String token = choise.next();
         int id = Integer.parseInt(token);
-        System.out.println("Enter date (dd/mm/yyyy): ");
-        LocalDate date= servicecomanda.getbyId(id).getData();
-        ArrayList<tort> torturivechi = servicecomanda.getbyId(id).getTorturi();
-        System.out.println("Enter date (dd/mm/yyyy): ");
-        LocalDate date1= LocalDate.parse(choise.next(), form);
+        System.out.println("Enter cake's new date (dd/mm/yyyy): ");
+        LocalDate date= LocalDate.parse(choise.next(), form);
         System.out.println("Enter the number of cakes: ");
         int n = Integer.parseInt(choise.next());
         ArrayList<tort> torturi = new ArrayList<>();
@@ -100,17 +79,15 @@ public class ui {
             int idc = Integer.parseInt(choise.next());
             torturi.add(servicetort.getbyId(idc));
         }
-        servicecomanda.update(id, date, torturivechi, id, date1, torturi);
+        servicecomanda.update(id, date, torturi);
     }
-    void deletecomanda(){
+    void deletecomanda() throws RepositoryException {
         System.out.println("Enter id: ");
-        Scanner choise = new Scanner(System.in);
         String token = choise.next();
         int id = Integer.parseInt(token);
-        servicecomanda.delete(id, servicecomanda.getbyId(id).getData(), servicecomanda.getbyId(id).getTorturi());
+        servicecomanda.delete(id);
     }
-    void getAllcomenzi(){
-        System.out.print("These are the added orders: ");
+    void getAllcomenzi() throws RepositoryException {
         for(int i = 0; i<servicecomanda.getAll().size(); i++){
             System.out.print("Order: " + servicecomanda.getAll().get(i));
         }
@@ -165,7 +142,7 @@ public class ui {
                     case "0":
                         break;
                 }
-            }catch (RuntimeException n) {
+            }catch (RuntimeException | RepositoryException n) {
                 System.out.println(n.toString());
             }
 

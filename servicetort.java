@@ -1,36 +1,34 @@
 import java.util.ArrayList;
 
 public class servicetort {
-    public repository<tort> repotort;
+    public MemoryRepository<tort> repotort;
 
     servicetort() {
     }
 
-    servicetort(repository<tort> repot) {
+    servicetort(MemoryRepository<tort> repot) {
         this.repotort = repot;
     }
 
-    public void add(int id, String tip) {
+    public void add(int id, String tip) throws RepositoryException {
         tort tort = new tort(id, tip);
         repotort.add(tort);
     }
 
-    public boolean delete(int id, String tip) {
-        tort tort = new tort(id, tip);
-        return repotort.delete(tort);
+    public void delete(int id) throws RepositoryException {
+        repotort.remove(id);
     }
 
-    public ArrayList<tort> getAll() {
+    public ArrayList<tort> getAll()throws RepositoryException {
         return repotort.getAll();
     }
 
-    public boolean update(int idvechi, int idnou, String tipvechi, String tipnou){
-        tort tortvechi = new tort(idvechi, tipvechi);
-        tort tortnou = new tort(idnou, tipnou);
-        return repotort.update(tortvechi, tortnou);
+    public void update(int idvechi, String tipnou) throws RepositoryException{
+        tort tortnou = new tort(idvechi, tipnou);
+        repotort.update(idvechi, tortnou);
 
     }
     public tort getbyId(int id){
-        return repotort.getById(id);
+        return repotort.find(id);
     }
 }

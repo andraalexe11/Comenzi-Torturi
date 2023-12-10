@@ -3,30 +3,28 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class servicecomanda {
-    public  repository<comanda> repocomanda;
+    public  MemoryRepository<comanda> repocomanda;
     public servicecomanda(){}
-    public servicecomanda(repository<comanda> repocomanda){
+    public servicecomanda(MemoryRepository<comanda> repocomanda){
         this.repocomanda = repocomanda;
     }
-    public void add(int id, LocalDate data, ArrayList<tort>  torturi){
+    public void add(int id, LocalDate data, ArrayList<tort>  torturi) throws RepositoryException {
         comanda comanda = new comanda(id, data, torturi);
         repocomanda.add(comanda);
     }
-    public ArrayList<comanda> getAll(){
+    public ArrayList<comanda> getAll()throws RepositoryException{
         return repocomanda.getAll();
     }
 
-    public boolean delete(int id, LocalDate data, ArrayList<tort>  torturi){
-        comanda comanda =  new comanda(id, data, torturi);
-        return repocomanda.delete(comanda);
+    public void delete(int id) throws RepositoryException {
+         repocomanda.remove(id);
     }
 
-    public boolean update(int idvechi, LocalDate dataveche, ArrayList<tort> torturivechi, int idnou, LocalDate datanoua, ArrayList<tort> torturinoi){
-        comanda comandaveche = new comanda(idvechi, dataveche, torturivechi);
-        comanda comandanoua  =  new comanda(idnou, datanoua, torturinoi);
-        return  repocomanda.update(comandaveche, comandanoua);
+    public void update(int idvechi, LocalDate datanoua, ArrayList<tort> torturinoi) throws RepositoryException{
+        comanda comandanoua  =  new comanda(idvechi, datanoua, torturinoi);
+        repocomanda.update(idvechi, comandanoua);
     }
     public comanda getbyId(int id){
-        return repocomanda.getById(id);
+        return repocomanda.find(id);
     }
 }
