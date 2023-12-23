@@ -1,12 +1,13 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class servicetort {
-    public MemoryRepository<tort> repotort;
+    public Irepository<tort> repotort;
 
     servicetort() {
     }
 
-    servicetort(MemoryRepository<tort> repot) {
+    servicetort(Irepository<tort> repot) {
         this.repotort = repot;
     }
 
@@ -23,7 +24,7 @@ public class servicetort {
         return repotort.getAll();
     }
 
-    public void update(int idvechi, String tipnou) throws RepositoryException{
+    public void update(int idvechi, String tipnou) throws RepositoryException, IOException {
         tort tortnou = new tort(idvechi, tipnou);
         repotort.update(idvechi, tortnou);
 

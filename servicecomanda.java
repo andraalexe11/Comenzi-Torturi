@@ -1,18 +1,18 @@
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class servicecomanda {
-    public  MemoryRepository<comanda> repocomanda;
+    public Irepository<comanda> repocomanda;
     public servicecomanda(){}
-    public servicecomanda(MemoryRepository<comanda> repocomanda){
+    public servicecomanda(Irepository<comanda> repocomanda){
         this.repocomanda = repocomanda;
     }
     public void add(int id, LocalDate data, ArrayList<tort>  torturi) throws RepositoryException {
         comanda comanda = new comanda(id, data, torturi);
         repocomanda.add(comanda);
     }
-    public ArrayList<comanda> getAll()throws RepositoryException{
+    public ArrayList<comanda> getAll()throws RepositoryException {
         return repocomanda.getAll();
     }
 
@@ -20,7 +20,7 @@ public class servicecomanda {
          repocomanda.remove(id);
     }
 
-    public void update(int idvechi, LocalDate datanoua, ArrayList<tort> torturinoi) throws RepositoryException{
+    public void update(int idvechi, LocalDate datanoua, ArrayList<tort> torturinoi) throws RepositoryException, IOException {
         comanda comandanoua  =  new comanda(idvechi, datanoua, torturinoi);
         repocomanda.update(idvechi, comandanoua);
     }

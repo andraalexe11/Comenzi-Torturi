@@ -1,0 +1,3 @@
+repo_type: bin
+repo_file1: C:\\Users\\Alexe Andra\\Documents\\Java\\a2-andraalexe11\\torturi.bin
+repo_file2: C:\\Users\\Alexe Andra\\Documents\\Java\\a2-andraalexe11\\comanda.bin

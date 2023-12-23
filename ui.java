@@ -1,7 +1,7 @@
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Scanner;
 
 public class ui {
@@ -34,7 +34,7 @@ public class ui {
         servicetort.delete(id);
     }
 
-    void updatetort() throws RepositoryException {
+    void updatetort() throws RepositoryException, IOException {
         System.out.print("Enter cake's id: ");
         String token = choise.next();
         int idvechi = Integer.parseInt(token);
@@ -46,7 +46,7 @@ public class ui {
 
     void getAlltorturi() throws RepositoryException {
         for(int i = 0; i<servicetort.getAll().size(); i++){
-            System.out.print("Cake:  " + servicetort.getAll().get(i));
+            System.out.println("Cake:  " + servicetort.getAll().get(i));
         }
     }
     void addcomanda() throws RepositoryException {
@@ -65,16 +65,16 @@ public class ui {
         }
         servicecomanda.add(id, date, torturi);
     }
-    void updatecomanda() throws RepositoryException {
-        System.out.println("Enter cake's id: ");
+    void updatecomanda() throws RepositoryException, IOException {
+        System.out.println("Enter order's id: ");
         String token = choise.next();
         int id = Integer.parseInt(token);
-        System.out.println("Enter cake's new date (dd/mm/yyyy): ");
+        System.out.println("Enter order's new date (dd/mm/yyyy): ");
         LocalDate date= LocalDate.parse(choise.next(), form);
         System.out.println("Enter the number of cakes: ");
         int n = Integer.parseInt(choise.next());
         ArrayList<tort> torturi = new ArrayList<>();
-        for(int i = 0; i<= n; i++){
+        for(int i = 0; i< n; i++){
             System.out.println("Cake id: ");
             int idc = Integer.parseInt(choise.next());
             torturi.add(servicetort.getbyId(idc));
@@ -142,7 +142,7 @@ public class ui {
                     case "0":
                         break;
                 }
-            }catch (RuntimeException | RepositoryException n) {
+            }catch (RuntimeException | RepositoryException | IOException n) {
                 System.out.println(n.toString());
             }
 

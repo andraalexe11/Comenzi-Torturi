@@ -1,4 +1,6 @@
-public class tort extends entity {
+import java.io.Serializable;
+
+public class tort extends entity implements Serializable {
     private String tip;
     tort(){}
     tort(int id, String tip){

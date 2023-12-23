@@ -1,5 +1,6 @@
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
+
 public interface Irepository<T extends entity> extends Iterable<T>{
 
 
@@ -12,4 +13,6 @@ public interface Irepository<T extends entity> extends Iterable<T>{
 
     // program to an interface, not an implementation
     public ArrayList<T> getAll();
+
+    void update(int idvechi, T comandanoua) throws IOException;
 }

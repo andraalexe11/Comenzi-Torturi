@@ -1,8 +1,8 @@
-
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
-public class comanda extends entity {
+public class comanda extends entity implements Serializable {
     private LocalDate data;
     private ArrayList<tort> torturi;
 
