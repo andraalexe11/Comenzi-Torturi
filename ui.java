@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class ui {
         this.servicecomanda = servicecomanda;
     }
 
-    void addtort() throws RepositoryException {
+    void addtort() throws RepositoryException, SQLException {
         System.out.print("Enter cake id: ");
         String token = choise.next();
         int id = Integer.parseInt(token);
@@ -49,7 +50,7 @@ public class ui {
             System.out.println("Cake:  " + servicetort.getAll().get(i));
         }
     }
-    void addcomanda() throws RepositoryException {
+    void addcomanda() throws RepositoryException, SQLException {
         System.out.println("Enter id: ");
         String token = choise.next();
         int id = Integer.parseInt(token);
@@ -112,8 +113,9 @@ public class ui {
         while(!option.equals("0")){
             try {
                 this.options();
+                System.out.println("Option: ");
+
                 option = choise.next();
-                System.out.println(option);
                 switch (option){
                     case "1":
                         this.addtort();
@@ -144,6 +146,8 @@ public class ui {
                 }
             }catch (RuntimeException | RepositoryException | IOException n) {
                 System.out.println(n.toString());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
 
         }

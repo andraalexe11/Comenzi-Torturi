@@ -1,10 +1,11 @@
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface Irepository<T extends entity> extends Iterable<T>{
 
 
-    public  void add(T elem) throws RepositoryException;
+    public  void add(T elem) throws RepositoryException, SQLException;
 
     public void remove(int id) throws RepositoryException;
 

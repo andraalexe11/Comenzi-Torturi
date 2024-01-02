@@ -4,7 +4,7 @@ import java.util.Objects;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws RepositoryException {
         Irepository<tort> repotort = null;
         Irepository<comanda> repocomanda = null;
         tortConverter tortConverter = new tortConverter();
@@ -35,6 +35,12 @@ public class Main {
             repotort = new BinaryFileRepository<tort>(settings.getRepoFile1());
             repocomanda = new BinaryFileRepository<comanda>(settings.getRepoFile2());
         }
+        if (Objects.equals(settings.getRepoType(), "db")) {
+            repotort = new SQLrepositorytort();
+            repocomanda = new SQLrepositorycomanda();
+
+        }
+
 
         servicetort servicetort = new servicetort(repotort);
         servicecomanda servicecomanda = new servicecomanda(repocomanda);

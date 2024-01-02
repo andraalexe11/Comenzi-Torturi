@@ -1,12 +1,13 @@
 import org.junit.Test;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TestService {
     @Test
-    public void testAdd() throws RepositoryException {
+    public void testAdd() throws RepositoryException, SQLException {
         MemoryRepository<comanda> memoryRepository = new MemoryRepository<>();
         servicecomanda servicecomanda = new servicecomanda(memoryRepository);
         ArrayList<tort> t = new ArrayList<>();
@@ -20,7 +21,7 @@ public class TestService {
         assert (tortMemoryRepository.getAll().size() == 1);
     }
   @Test
-    public void  testDelete() throws RepositoryException {
+    public void  testDelete() throws RepositoryException, SQLException {
         MemoryRepository<comanda> memoryRepository = new MemoryRepository<>();
         servicecomanda servicecomanda = new servicecomanda(memoryRepository);
         ArrayList<tort> t = new ArrayList<>();
@@ -39,7 +40,7 @@ public class TestService {
     }
 
     @Test
-    public  void testUpdate() throws RepositoryException, IOException {
+    public  void testUpdate() throws RepositoryException, IOException, SQLException {
         MemoryRepository<comanda> memoryRepository = new MemoryRepository<>();
         servicecomanda servicecomanda = new servicecomanda(memoryRepository);
         ArrayList<tort> t = new ArrayList<>();
@@ -52,7 +53,7 @@ public class TestService {
     }
 
     @Test
-    public void servicetort() throws RepositoryException {
+    public void servicetort() throws RepositoryException, SQLException {
         MemoryRepository<tort> memoryRepository  = new MemoryRepository<>();
         servicetort servicetort = new servicetort(memoryRepository);
         servicetort.add(1, "vanilie");

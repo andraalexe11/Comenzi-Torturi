@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class TextFileRepository<T extends entity> extends MemoryRepository<T> {
 
@@ -21,7 +22,7 @@ public class TextFileRepository<T extends entity> extends MemoryRepository<T> {
         }
 
         @Override
-        public void add(T o) throws RepositoryException {
+        public void add(T o) throws RepositoryException, SQLException {
             super.add(o);
             try {
                 saveFile();

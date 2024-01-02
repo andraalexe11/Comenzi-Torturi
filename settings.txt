@@ -1,3 +1,1 @@
-repo_type: text
-repo_file1: C:\\Users\\Alexe Andra\\Documents\\Java\\a2-andraalexe11\\torturi.txt
-repo_file2: C:\\Users\\Alexe Andra\\Documents\\Java\\a2-andraalexe11\\comenzi.txt
+repo_type: db

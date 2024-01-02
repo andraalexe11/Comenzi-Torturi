@@ -1,4 +1,5 @@
 import java.io.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class BinaryFileRepository<T extends entity> extends MemoryRepository<T> {
@@ -17,7 +18,7 @@ public class BinaryFileRepository<T extends entity> extends MemoryRepository<T> 
 
 
     @Override
-    public void add(T o) throws RepositoryException {
+    public void add(T o) throws RepositoryException, SQLException {
         super.add(o);
         // saveFile se executa doar daca super.add() nu a aruncat exceptie
         try {

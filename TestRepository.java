@@ -1,11 +1,12 @@
 import org.junit.Test;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class TestRepository{
     @Test
-    public void testAdd() throws RepositoryException {
+    public void testAdd() throws RepositoryException, SQLException {
         tort tort = new tort(1, "ciocolata");
         MemoryRepository<tort> memoryRepository = new MemoryRepository<>();
         memoryRepository.add(tort);
@@ -13,7 +14,7 @@ public class TestRepository{
     }
 
     @Test
-    public void testDelete() throws RepositoryException {
+    public void testDelete() throws RepositoryException, SQLException {
         tort tort = new tort(1, "ciocolata");
         tort tort1 = new tort(2, "vanilie");
         MemoryRepository<tort> memoryRepository = new MemoryRepository<>();
@@ -24,7 +25,7 @@ public class TestRepository{
     }
 
     @Test
-    public void testUpdate() throws RepositoryException, IOException {
+    public void testUpdate() throws RepositoryException, IOException, SQLException {
         tort tort = new tort(1, "ciocolata");
         MemoryRepository<tort> memoryRepository = new MemoryRepository<>();
         memoryRepository.add(tort);

@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class servicetort {
@@ -11,7 +12,7 @@ public class servicetort {
         this.repotort = repot;
     }
 
-    public void add(int id, String tip) throws RepositoryException {
+    public void add(int id, String tip) throws RepositoryException, SQLException {
         tort tort = new tort(id, tip);
         repotort.add(tort);
     }

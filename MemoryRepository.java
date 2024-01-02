@@ -1,8 +1,9 @@
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MemoryRepository <T extends entity> extends AbstractRepository<T> {
-    public void add(T elem) throws RepositoryException {
+    public void add(T elem) throws RepositoryException, SQLException {
         if (elem == null) {
             throw new IllegalArgumentException();
         }

@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -8,7 +9,7 @@ public class servicecomanda {
     public servicecomanda(Irepository<comanda> repocomanda){
         this.repocomanda = repocomanda;
     }
-    public void add(int id, LocalDate data, ArrayList<tort>  torturi) throws RepositoryException {
+    public void add(int id, LocalDate data, ArrayList<tort>  torturi) throws RepositoryException, SQLException {
         comanda comanda = new comanda(id, data, torturi);
         repocomanda.add(comanda);
     }
